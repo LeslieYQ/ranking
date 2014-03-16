@@ -1,0 +1,24 @@
+.ranking-content { margin: 20px; overflow: hidden;width: 100%;}
+.ranking-number-self { background: url(../images/ranking.png) top right; height: 126px; width: 165px; }
+.ranking-number-self p { color: #7fb31d; text-align: center; margin: 0px auto; width: 60px; }
+p.ranking-number-k-in { font-size: 2.5em; margin-top: 20px; }
+p.ranking-number-k-out { font-size: 2em; margin-top: 12px; line-height: 1em; }
+.ranking-detail { overflow-x: auto; height: 580px; width: 100%; overflow-y: hidden; *position: relative; }
+.ranking-list-inline { padding-left: 0; list-style: none; width: 0px; }
+.ranking-list-inline > li { display: block; float: left; margin-right: 16px; *width: 66px; }
+.ranking-steps { color: #7eb222; font-size: 1.5em; text-align: center; position: relative; top: 0%; -webkit-transition: all 1s ease-in; transition: all 1s ease-in; -moz-transition: all 1s ease-in; }
+.ranking-graph-steps { width: 66px; height: 340px; position: relative; }
+.ranking-graph-render { background: #a4db35; position: relative; left: 0px; width: 100%; height: 100%; top: 0%; -webkit-transition: all 1s ease-in; transition: all 1s ease-in; -moz-transition: all 1s ease-in; }
+.initial-render { height: 0% !important; top: 100% !important; }
+.ranking-crown { height: 22px; width: 35px; margin: 0 auto; margin-top: 45px; z-index: 100; position: relative; }
+.ranking-crown-image { background: url(../images/ranking.png) -70px 0px; }
+.ranking-avatar { position: relative; height: 66px; width: 66px; background: url(../images/ranking.png) top left; top: -3px; }
+.ranking-avatar-background { background: url(../images/ranking.png) top left; height: 64px; width: 64px; position: absolute; left: 0px; top: 0px; }
+.ranking-avatar-image { width: 64px; height: 64px; }
+.ranking-number { color: #232431; text-align: center; font-size: 1.5em; }
+.ranking-top-three { color: #f6752c; }
+.ranking-name { margin-bottom: 20px; width: 66px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 1em; }
+.ranking-detail::-webkit-scrollbar { height: 15px; width: 15px; }
+.ranking-detail::-webkit-scrollbar-track { background: white; border-radius: 10px; }
+.ranking-detail::-webkit-scrollbar-track-piece { background: #ccc; border-radius: 10px; }
+.ranking-detail::-webkit-scrollbar-thumb { background: #a4db35; border-radius: 10px; height: 50px; }
