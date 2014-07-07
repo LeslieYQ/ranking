@@ -8,7 +8,7 @@
 		me.ranking = null;
 		me.rankingData = null;
 		me.rankingArea = null;
-		options = options || {};
+		me.options = options || {};
 	};
 	Ranking.prototype = {
 		init: function(node) {
@@ -132,15 +132,15 @@
 // 横竖选项。
 // 暂时这两个。
 	$.fn.ranking = function(options) {
-		//options = $.extend({}, $.fn.ranking.defaults, options || {});
-		var ranking = new Ranking();
-		console.log(ranking);
+		var ranking = new Ranking(options);
 		if (!ranking.rankingUl) {
 			ranking.init(this);
 		};
-
-		//rankingData = data;
-
+		console.log(options);
+		$.ajax({
+			url: options.data,
+			type: "get"
+		});
 		//_render(data);
 
 		//_isViewable(rankingUl, rankingArea);

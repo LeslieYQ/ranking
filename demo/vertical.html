@@ -1,0 +1,25 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="themes/css/index.css">
+    <script type="text/javascript" src="themes/js/jquery.js"></script>
+    <script type="text/javascript" src="themes/js/handlebars.js"></script>
+</head>
+
+<body>
+    <div id="ranking" style="width:660px;height:500px;margin:0 auto;padding:40px;">
+       
+    </div>
+</body>
+<script type="text/javascript" src="themes/js/jquery.ranking.js"></script>
+<script type="text/javascript" src="themes/js/count.js"></script>
+<script type="text/javascript" src="themes/js/data.js"></script>
+<script type="text/javascript">
+$('#ranking').ranking({
+    data:userRankingList
+});
+</script>
+
+</html>

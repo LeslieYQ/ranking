@@ -1,4 +1,3 @@
-
 	userRankingList = [{
 		"userId": 2408,
 		"nickName": "远山寒松",

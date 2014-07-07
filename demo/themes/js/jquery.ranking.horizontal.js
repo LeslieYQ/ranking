@@ -8,10 +8,10 @@
 	var init = function(node) {
 		node.append('<div class="ranking-content"></div>');
 		node.find('.ranking-content').append('<div class="ranking-detail"></div>');
-		node.find('.ranking-detail').append('<div id="ranking-details-content"></div>');
-		rankingUl = $('#ranking-details-content');
+		node.find('.ranking-detail').append('<ul class="ranking-list-inline clearfix" id="ranking-details-ul"></ul>');
+		rankingUl = $('#ranking-details-ul');
 		ranking = rankingUl.parent();
-		rankingArea = rankingUl.offset().top + 460;
+		rankingArea = rankingUl.offset().left + 770;
 		console.log(rankingArea);
 	};
 
@@ -23,10 +23,10 @@
 	var _bindScroll = function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
-		var width = rankingUl.height(),
-			scrollWidth = $(event.target).height()
-			scrollLeft = $(event.target).scrollTop(),
-			begin = rankingUl.find('div.ranking-item').length;
+		var width = rankingUl.width(),
+			scrollWidth = $(event.target).width()
+			scrollLeft = $(event.target).scrollLeft(),
+			begin = rankingUl.children('li').length;
 		_isViewable(rankingUl, rankingArea);
 		if (width - scrollLeft - scrollWidth < 100) {
 			ranking.unbind("scroll");
@@ -38,15 +38,15 @@
 		};
 	};
 
-	var _isViewable = function(nodeID, area) { console.log(area);
-		$.each(nodeID.children('div:has(.initial-render)'), function(index, val) {
+	var _isViewable = function(nodeID, area) {
+		$.each(nodeID.children('li:has(.initial-render)'), function(index, val) {
 			/* iterate through array or object */
 			var thisNode = $(this),
 				thisBody = document.body || document.documentElement,
 				thisStyle = thisBody.style,
 				transitionEndEvent = 'webkitTransitionEnd oTransitionEnd transitionend',
 				cssTransitionsSupported = thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.OTransition !== undefined || thisStyle.transition !== undefined;
-			if (thisNode.offset().top < area) {
+			if (thisNode.offset().left < area) {
 				if (cssTransitionsSupported) {
 					thisNode.find('div.ranking-graph-render').removeClass('initial-render');
 					thisNode.find('p.ranking-steps').removeClass('initial-render');
@@ -54,15 +54,15 @@
 					var divTop = thisNode.find('div.ranking-graph-render').attr('data-top'),
 						divHeight = thisNode.find('div.ranking-graph-render').attr('data-height');
 					thisNode.find('div.ranking-graph-render').css("top", "100%");
-					thisNode.find('div.ranking-graph-render').width(0);
-					thisNode.find('p.ranking-steps').css("left", "100%");
+					thisNode.find('div.ranking-graph-render').height(0);
+					thisNode.find('p.ranking-steps').css("top", "100%");
 					thisNode.find('div.ranking-graph-render').removeClass('initial-render').animate({
-							left: divTop + '%',
-							width: divHeight + '%'
+							top: divTop + '%',
+							height: divHeight + '%'
 						},
 						1000);
 					thisNode.find('p.ranking-steps').removeClass('initial-render').animate({
-						left: divTop + '%'
+						top: divTop + '%'
 					}, 1000);
 				};
 				var toNumber = parseInt(thisNode.find('p.ranking-steps').attr('data-number'));
@@ -80,12 +80,13 @@
 		var liHtml = [],
 			tpl = null,
 			tencentImageUrl = 'http://app1101081259.qzone.qzoneapp.com/lepao-image/userHeadImage/';
-			liHtml.push('<div class="ranking-item"><ul class="ranking-list">');
-			liHtml.push('<li><p class="ranking-number {{topThree}}">{{rankId}}</p><p class="ranking-number ranking-name {{topThree}}">{{nickName}}</p></li>');
-			liHtml.push('<li><div class="ranking-avatar"><img src="{{avatar}}" class="ranking-avatar-image"><div class="ranking-avatar-background"></div></div></li>');
-			liHtml.push('<li><div class="ranking-graph-steps"><div class="ranking-graph-render initial-render" data-height="{{percent}}" data-top="{{topPercent}}" style="width:{{percent}}%;"></div><p class="ranking-steps initial-render" data-number="{{steps}}" style="left:{{percent}}%">0</p></div></li>');
-			liHtml.push('</ul></div>');
-			rankingUl.height(rankingUl.height() + 82 * data.length);
+		liHtml.push('<li class="ranking-detail-li"><div class="ranking-graph-steps">');
+		liHtml.push('<p class="ranking-steps initial-render" data-number="{{steps}}" style="top:{{topPercent}}%">0</p><div class="ranking-graph-render initial-render" data-height="{{percent}}" data-top="{{topPercent}}" style="height:{{percent}}%;top:{{topPercent}}%"></div></div>'); //记录跑了多少步
+		liHtml.push('<div class="ranking-crown {{crownImage}}"></div>');
+		liHtml.push('<div class="ranking-avatar"><img src="{{avatar}}" class="ranking-avatar-image"><div class="ranking-avatar-background"></div></div>');
+		liHtml.push('<p class="ranking-number {{topThree}}">{{rankId}}</p>');
+		liHtml.push('<p class="ranking-number ranking-name {{topThree}}">{{nickName}}</p></li>');
+		rankingUl.width(rankingUl.width() + 82 * data.length);
 
 		for (var i = 0; i <= data.length - 1; i++) {
 			var randerData = {
